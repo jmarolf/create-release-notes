@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <Sdk Name="DotNet.ReproducibleBuilds.Isolated" Version="1.1.1" />
+  <!-- Import our custom build layout -->
+  <Import Project="eng\Settings.props" />
+
+  <!-- SDK settings -->
+  <PropertyGroup>
+    <!-- We set "allowPrerelease": true in our global.json file so don't warn us -->
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+  </PropertyGroup>
+
+  <!-- Nuget settings -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally> <!-- Use Directory.Packages.props for nuget package versions -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile> <!-- Enable deterministic restore -->
+    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation> <!-- Enable faster restore times -->
+  </PropertyGroup>
+  
+  <!-- Compiler settings -->
+  <PropertyGroup>
+    <AnalysisLevel>latest</AnalysisLevel> <!-- Opt into more advanced analysis -->
+    <LangVersion>latest</LangVersion> <!-- Ensure all projects use the latest language version -->
+    <Nullable>enable</Nullable> <!-- Turn on nullable-reference-type analysis -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Use reproduceable builds feature -->
+    <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All"/>
+  </ItemGroup>
+
+</Project>
